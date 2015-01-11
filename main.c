@@ -21,7 +21,7 @@ int main() {
     while(1) {
         //client = Klient socket
         //server_accept() = Tag emot en klient
-        client = server_accept();
+        client = client_accept();
         
         //Skapa en ny process som hanterar klienten
         if(! fork())
