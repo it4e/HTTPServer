@@ -38,3 +38,5 @@ struct http_response {
     char type[RES_TYPE_LIMIT]; //Datatyp, tex text/html, text/css
     char connection[RES_CONNECTION_LIMIT]; //Anslutningstyp
 };
+
+#endif
