@@ -21,7 +21,7 @@ size_t get_file(char * file_path, char * buff, size_t buffsize) {
     //Spara ner datan i arrayen buff där varje objekt är 1 byte stort
     //Du får maximalt spara ner buffsize bytes i arrayen
     //Läs från filen file
-    nread = fread(buff, 1, buffsize, file);
+    nread = fread(buff, sizeof buff[0], buffsize, file);
     
     //Kolla om man har nått slutet av filen
     //Om man inte har gjort det betyder det att filen är för stor för buff
