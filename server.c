@@ -49,12 +49,11 @@ int main(argc, char *argv[]) {
     
     clilen = sizeof(cli_addr);
     
-    newsockfd = accept(sockfd, (struct sockaddr *), &cli_addr, &clilen);
+    newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
     if (newsockfd < 0) {
         error("ERROR on accept");
     }
         
-        bzero(buffer, 256);
         n = read(newsockfd, buffer, 255);
         if (n < 0) {
             error("ERROR reading from socket");
