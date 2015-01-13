@@ -11,12 +11,12 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 
-//Koden ej färdig
 void error(char *msg) {
     perror(msg);
     exit(1);
 }
 
+//Main funktionen ska tas bort, för att denna fil ska inkluderas i HTTPServer main.c.
 int main(argc, char *argv[]) {
     
     int sockfd, newsockfd, portno, clilen, n;
@@ -53,4 +53,17 @@ int main(argc, char *argv[]) {
     if (newsockfd < 0) {
         error("ERROR on accept");
     }
+        
+        bzero(buffer, 256);
+        n = read(newsockfd, buffer, 255);
+        if (n < 0) {
+            error("ERROR reading from socket");
+            printf("Here is the message: %s\n", buffer);
+        }
+    
+    n = write(newsockfd, "I got your message", 18);
+    if (n < 0) {
+        error("ERROR writing to socket");
+    }
+    return 0;
 }
