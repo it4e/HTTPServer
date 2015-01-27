@@ -10,14 +10,37 @@
 #include "server.h"
 #include <sys/types.h>
 #include <netinet/in.h>
+#include <sys/socket.h>
 
 void error(char *msg) {
     perror(msg);
     exit(1);
 }
 
+// Gör servern redo för att ta emot klienter
+// port = port att ansluta till
+// server = en pekare till en variabel som skall hålla socketen
+void server_config(int * server, int port) {
+    struct sockaddr_in serverinfo;
+
+    if((*server = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+        error("socket()");
+
+    memset(&serverinfo, 0, sizeof serverinfo);
+    serverinfo.sin_addr.s_addr = INADDR_ANY;
+    serverinfo.sin_family = AF_INET;
+    serverinfo.sin_port = htons(port);
+
+    if(bind(*server, (struct sockaddr *) &serverinfo, sizeof serverinfo) < 0)
+        error("bind()");
+
+    if(listen(*server, BACKLOG) < 0)
+        error("listen()");
+}
+
+
 //Main funktionen ska tas bort, för att denna fil ska inkluderas i HTTPServer main.c.
-int main(argc, char *argv[]) {
+/*int main(argc, char *argv[]) {
     
     int sockfd, newsockfd, portno, clilen, n;
     char buffer[256];
@@ -65,4 +88,4 @@ int main(argc, char *argv[]) {
         error("ERROR writing to socket");
     }
     return 0;
-}
+}*/
