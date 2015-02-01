@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "server.h"
-#include "client.h"
 
 //STRUKTUR
 //1. Sätt igång server
@@ -15,9 +14,13 @@
 //4. Skapa ny process som hanterar klient
 //5. Börja om från steg 2
 int main() {
+    int server;
+
     //Starta och konfigurera servern, i server.h
-    server_config();
-    
+    server_config(&server, 7000);
+    printf("Lyssnar på port '7000', max = %d\n", BACKLOG);
+
+    /*
     while(1) {
         //client = Klient socket
         //server_accept() = Tag emot en klient
@@ -30,7 +33,7 @@ int main() {
         ....
     }
 
-    .....
+    .....*/
 
     return 0;
 }
