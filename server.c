@@ -42,7 +42,7 @@ void server_config(int * server, int port) {
 
 
 //Main funktionen ska tas bort, för att denna fil ska inkluderas i HTTPServer main.c.
-/*int main(argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     
     int sockfd, newsockfd, portno, clilen, n;
     char buffer[256];
@@ -90,4 +90,4 @@ void server_config(int * server, int port) {
         error("ERROR writing to socket");
     }
     return 0;
-}*/
+}
