@@ -13,6 +13,7 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
+#include <unistd.h>
 
 void error(char *msg) {
     perror(msg);
@@ -22,7 +23,7 @@ void error(char *msg) {
 // Gör servern redo för att ta emot klienter
 // port = port att ansluta till
 // server = en pekare till en variabel som skall hålla socketen
-void server_config(int * server, int port) {
+/*void server_config(int * server, int port) {
     struct sockaddr_in serverinfo;
 
     if((*server = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -38,15 +39,16 @@ void server_config(int * server, int port) {
 
     if(listen(*server, BACKLOG) < 0)
         error("listen()");
-}
+}*/
 
 
 //Main funktionen ska tas bort, för att denna fil ska inkluderas i HTTPServer main.c.
 int main(int argc, char *argv[]) {
     
-    int sockfd, newsockfd, portno, clilen, n;
+    int sockfd, newsockfd, portno, n;
     char buffer[256];
     struct sockaddr_in serv_addr, cli_addr;
+    socklen_t clilen;
     
     if (argc < 2) {
         fprintf(stderr, "ERROR, no port provided\n");
