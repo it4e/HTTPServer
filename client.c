@@ -20,11 +20,11 @@ void error(char* msg) {
     exit(0);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     
     int sockfd, portno, n;
     struct sockaddr_in serv_addr;
-    struct hostent *server;
+    struct hostent* server;
     
     char buffer[256];
     
@@ -45,12 +45,14 @@ int main(int argc, char *argv[]) {
         exit(0);
     }
     
-    bzero(char *) &serv_addr, sizeof(serv_addr));
+    bzero((char*) &serv_addr, sizeof(serv_addr));
     serv_addr.sin_family = AF_NET;
-    bcopy((char *) server->h_addr, (char *) &serv_addr.sin_addr.s_addr, 
+    void bcopy((char* s1, char* s2, int length) server->h_addr, (char*) &serv_addr.sin_addr.s_addr,
          server->h_length);
     serv_addr.sin_port = htons(portno);
     
     if (connect(sockfd, &serv_addr, sizeof(serv_addr)) < 0)
         error("ERROR connecting");
+    
+    
 }
