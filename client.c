@@ -44,4 +44,13 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "ERROR, no such host\n");
         exit(0);
     }
+    
+    bzero(char *) &serv_addr, sizeof(serv_addr));
+    serv_addr.sin_family = AF_NET;
+    bcopy((char *) server->h_addr, (char *) &serv_addr.sin_addr.s_addr, 
+         server->h_length);
+    serv_addr.sin_port = htons(portno);
+    
+    if (connect(sockfd, &serv_addr, sizeof(serv_addr)) < 0)
+        error("ERROR connecting");
 }
