@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 WorkhorsePS. All rights reserved.
 //
 
-//Denna fil är för test av server gentemot server i HTTPServer projektet.
+//Denna fil är för test av klient gentemot server i HTTPServer projektet.
 //Main funktionen ska senare tas bort i originalfilen i den inkludernade filen client.c, se HTTPServer projektet.
 
 #include <stdio.h>
@@ -15,7 +15,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 
-void error(char *msg) {
+void error(char* msg) {
     perror(msg);
     exit(0);
 }
